@@ -25,177 +25,195 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Container(
-        padding: const EdgeInsets.only(top: 100, bottom: 40),
-        decoration: const BoxDecoration(
-          color: Colors.black,
-          image: DecorationImage(
-            image: AssetImage("images/bg-mobile.jpg"),
-            fit: BoxFit.cover,
-            opacity: 0.6,
-          ),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              "parcakes!",
-              style: GoogleFonts.pacifico(
-                fontSize: 50,
-                color: Colors.orange,
+    return Scaffold(
+      body: Stack(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              color: Colors.black,
+              image: DecorationImage(
+                image: AssetImage("images/bg-mobile.jpg"),
+                fit: BoxFit.cover,
+                opacity: 0.6,
               ),
             ),
-            Column(
-              children: [
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                  child: TextField(
-                    controller: _controllerUsername,
-                    decoration: InputDecoration(
-                      border: const OutlineInputBorder(
-                        borderSide: BorderSide(width: 1, color: Colors.white),
-                      ),
-                      enabledBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(width: 1, color: Colors.white),
-                      ),
-                      focusedBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(width: 2, color: Colors.white),
-                      ),
-                      errorBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(width: 2, color: Colors.orange),
-                      ),
-                      focusedErrorBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(width: 2, color: Colors.white),
-                      ),
-                      hintText: 'Write your username...',
-                      hintStyle: const TextStyle(color: Colors.white),
-                      labelText: 'Username',
-                      labelStyle: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                      ),
-                      errorText: _validateUsername
-                          ? 'Username can\'t be empty!'
-                          : null,
-                      errorStyle: const TextStyle(
+            child: Center(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.only(top: 40, bottom: 40),
+                child: Column(
+                  children: [
+                    Text(
+                      "parcakes!",
+                      style: GoogleFonts.pacifico(
+                        fontSize: 50,
                         color: Colors.orange,
-                        fontWeight: FontWeight.w500,
-                        fontStyle: FontStyle.italic,
                       ),
                     ),
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
+                    const SizedBox(
+                      height: 20,
                     ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                  child: TextField(
-                    controller: _controllerPassword,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      border: const OutlineInputBorder(
-                        borderSide: BorderSide(width: 1, color: Colors.white),
-                      ),
-                      enabledBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(width: 1, color: Colors.white),
-                      ),
-                      focusedBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(width: 2, color: Colors.white),
-                      ),
-                      errorBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(width: 2, color: Colors.orange),
-                      ),
-                      focusedErrorBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(width: 2, color: Colors.white),
-                      ),
-                      hintText: 'Write your password...',
-                      hintStyle: const TextStyle(color: Colors.white),
-                      labelText: 'Password',
-                      labelStyle: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                      ),
-                      errorText: _validatePassword
-                          ? 'Password can\'t be empty!'
-                          : null,
-                      errorStyle: const TextStyle(
-                        color: Colors.orange,
-                        fontWeight: FontWeight.w500,
-                        fontStyle: FontStyle.italic,
-                      ),
-                    ),
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 80,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      _controllerUsername.text.isEmpty
-                          ? _validateUsername = true
-                          : _validateUsername = false;
-
-                      _controllerPassword.text.isEmpty
-                          ? _validatePassword = true
-                          : _validatePassword = false;
-
-                      !_validateUsername && !_validatePassword
-                          ? Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => HomeScreen(
-                                    username: _controllerUsername.text),
+                    Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 16),
+                          child: TextField(
+                            controller: _controllerUsername,
+                            decoration: InputDecoration(
+                              border: const OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(width: 1, color: Colors.white),
                               ),
-                            )
-                          : null;
-                    });
-                  },
-                  style: ButtonStyle(
-                    foregroundColor:
-                        MaterialStateProperty.all<Color>(Colors.white),
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.orange),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
+                              enabledBorder: const OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(width: 1, color: Colors.white),
+                              ),
+                              focusedBorder: const OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(width: 2, color: Colors.white),
+                              ),
+                              errorBorder: const OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(width: 2, color: Colors.orange),
+                              ),
+                              focusedErrorBorder: const OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(width: 2, color: Colors.white),
+                              ),
+                              hintText: 'Write your username...',
+                              hintStyle: const TextStyle(color: Colors.white),
+                              labelText: 'Username',
+                              labelStyle: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                              ),
+                              errorText: _validateUsername
+                                  ? 'Username can\'t be empty!'
+                                  : null,
+                              errorStyle: const TextStyle(
+                                color: Colors.orange,
+                                fontWeight: FontWeight.w500,
+                                fontStyle: FontStyle.italic,
+                              ),
+                            ),
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 16),
+                          child: TextField(
+                            controller: _controllerPassword,
+                            obscureText: true,
+                            decoration: InputDecoration(
+                              border: const OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(width: 1, color: Colors.white),
+                              ),
+                              enabledBorder: const OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(width: 1, color: Colors.white),
+                              ),
+                              focusedBorder: const OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(width: 2, color: Colors.white),
+                              ),
+                              errorBorder: const OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(width: 2, color: Colors.orange),
+                              ),
+                              focusedErrorBorder: const OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(width: 2, color: Colors.white),
+                              ),
+                              hintText: 'Write your password...',
+                              hintStyle: const TextStyle(color: Colors.white),
+                              labelText: 'Password',
+                              labelStyle: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                              ),
+                              errorText: _validatePassword
+                                  ? 'Password can\'t be empty!'
+                                  : null,
+                              errorStyle: const TextStyle(
+                                color: Colors.orange,
+                                fontWeight: FontWeight.w500,
+                                fontStyle: FontStyle.italic,
+                              ),
+                            ),
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              _controllerUsername.text.isEmpty
+                                  ? _validateUsername = true
+                                  : _validateUsername = false;
+
+                              _controllerPassword.text.isEmpty
+                                  ? _validatePassword = true
+                                  : _validatePassword = false;
+
+                              !_validateUsername && !_validatePassword
+                                  ? Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => HomeScreen(
+                                            username: _controllerUsername.text),
+                                      ),
+                                    )
+                                  : null;
+                            });
+                          },
+                          style: ButtonStyle(
+                            foregroundColor:
+                                MaterialStateProperty.all<Color>(Colors.white),
+                            backgroundColor:
+                                MaterialStateProperty.all<Color>(Colors.orange),
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(
+                              vertical: 15,
+                              horizontal: 35,
+                            ),
+                            child: Text(
+                              'Login',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 1,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: 15,
-                      horizontal: 35,
-                    ),
-                    child: Text(
-                      'Login',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1,
-                      ),
-                    ),
-                  ),
+                  ],
                 ),
-              ],
+              ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
